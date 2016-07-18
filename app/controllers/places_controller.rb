@@ -1,6 +1,6 @@
 class PlacesController < ApplicationController
   before_action :set_place, only: [:show, :edit, :update, :destroy]
-  before_action :authenticate_user!, except: [:index, :show] // authenticate comes from devise, routes unauthenticated users to sign_up page
+  before_action :authenticate_user!, except: [:index, :show] # comes from devise, routes unauthenticated users to sign_up page
 
   # GET /places
   def index
@@ -22,7 +22,7 @@ class PlacesController < ApplicationController
 
   # POST /places
   def create
-    @place = Place.current_user.places.build(place_params)
+    @place = current_user.places.build(place_params)
 
     respond_to do |format|
       if @place.save
