@@ -29,6 +29,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # User Authentication
 gem 'devise', '~> 4.2'
 
+# Image uplad
+gem 'paperclip', '~> 4.3', '>= 4.3.6'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
