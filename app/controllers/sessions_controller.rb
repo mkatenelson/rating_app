@@ -1,4 +1,5 @@
 class SessionsController < ApplicationController
+  include SessionsHelper
 
   def new
     redirect_to @current_user if @current_user
@@ -6,7 +7,7 @@ class SessionsController < ApplicationController
 
   def create
     #pass in array that user_params returns as arguments using a splat
-    user = User.confirm(params[:email], params[:password])
+    user = User.find(params[:name], params[:password])
     if user
       #this creates the session, logging in the user
       session[:user_id] = user.id
@@ -23,5 +24,4 @@ class SessionsController < ApplicationController
     logout
     redirect_to root_path
   end
-
 end
