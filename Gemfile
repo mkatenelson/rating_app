@@ -32,6 +32,9 @@ gem 'devise', '~> 4.2'
 # Image uplad
 gem 'paperclip', '~> 4.3', '>= 4.3.6'
 
+# Bootstrap
+gem 'bootstrap-sass', '~> 3.3.6'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 

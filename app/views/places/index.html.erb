@@ -1,30 +1,17 @@
-<p id="notice"><%= notice %></p>
+<% if !user_signed_in? %>
+  <div class="jumbotron">
+    <h1>Your Favorite Places Reviewed</h1>
+    <p>Hashtag hoodie mumblecore selfies. Authentic keffiyeh leggings Kickstarter, narwhal jean shorts XOXO Vice Austin cardigan. Organic drinking vinegar freegan pickled.</p>
+    <p><%= link_to "Sign Up To Write A Review", new_user_registration_path, class: "btn btn-primary btn-lg" %></p>
+  </div>
+<% end %>
 
-<h1>Listing Places</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Name</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @places.each do |place| %>
-      <tr>
-        <td><%= image_tag place.image.url(:thumb) %></td>
-        <td><%= place.name %></td>
-        <td><%= place.description %></td>
-        <td><%= link_to 'Show', place %></td>
-        <td><%= link_to 'Edit', edit_place_path(place) %></td>
-        <td><%= link_to 'Destroy', place, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Place', new_place_path %>
+<div class="row">
+  <% @places.each do |place| %>
+    <div class="col-sm-6 col-md-3">
+      <div class="thumbnail">
+        <%= link_to (image_tag place.image.url(:medium), class: 'image'), place %>
+      </div>
+    </div>
+  <% end %>
+</div>
