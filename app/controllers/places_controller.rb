@@ -1,20 +1,36 @@
 class PlacesController < ApplicationController
   before_action :set_place, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show] # comes from devise, routes unauthenticated users to sign_up page
+
+  def search
+    if params[:search].present?
+      @places = Place.search(params[:search])
+    else
+      @places = Place.all #if search is blank, display all places
+    end
+  end
+
 
   # GET /places
-  # GET /places.json
   def index
     @places = Place.all
   end
 
   # GET /places/1
-  # GET /places/1.json
   def show
+    @reviews = Review.where(place_id: @place.id).order("created_at DESC")
+
+    if @review.blank?
+      @avg_review = 0
+    else
+      @avg_review = @reviews.average(:rating).round(2)
+    end
+
   end
 
   # GET /places/new
   def new
-    @place = Place.new
+    @place = current_user.places.build
   end
 
   # GET /places/1/edit
@@ -22,9 +38,8 @@ class PlacesController < ApplicationController
   end
 
   # POST /places
-  # POST /places.json
   def create
-    @place = Place.new(place_params)
+    @place = current_user.places.build(place_params)
 
     respond_to do |format|
       if @place.save
@@ -38,7 +53,6 @@ class PlacesController < ApplicationController
   end
 
   # PATCH/PUT /places/1
-  # PATCH/PUT /places/1.json
   def update
     respond_to do |format|
       if @place.update(place_params)
@@ -52,7 +66,6 @@ class PlacesController < ApplicationController
   end
 
   # DELETE /places/1
-  # DELETE /places/1.json
   def destroy
     @place.destroy
     respond_to do |format|
@@ -62,13 +75,11 @@ class PlacesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_place
       @place = Place.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
     def place_params
-      params.require(:place).permit(:name, :description)
+      params.require(:place).permit(:name, :description, :image)
     end
 end
