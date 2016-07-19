@@ -32,13 +32,13 @@
           <%= link_to "Write Review", new_place_review_path(@place), class: "btn btn-danger" %>
         <% else %>
           <%= @reviews.each do |review| %>
-            <div class="reviews">
-              <p><%= review.rating %></p>
-              <p><%= review.comment %></p>
-            </div>
+          <div class="reviews">
+            <div class="star-rating" data-score= <%= review.rating %> ></div>
+            <p><%= review.comment %></p>
+          </div>
           <% end %>
         <% end %>
-            
+
       </div>
     </div>
   </div>
@@ -47,3 +47,14 @@
 
 <%= link_to 'Edit', edit_place_path(@place) %> |
 <%= link_to 'Back', places_path %>
+
+
+<script>
+  $('.star-rating').raty({
+    path: '/assets/',
+    readOnly: true,
+    score: function() {
+      return $(this).attr('data-score');
+    }
+  });
+</script>
