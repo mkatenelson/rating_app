@@ -17,8 +17,28 @@
               </tr>
             </tbody>
           </table>
+
+          <%= link_to "Write a Review", new_place_review_path(@place) %>
+
         </div>
 
+      </div>
+      <div class="col-nd-7 col-md-offset-1">
+        <h1 class="review_title"><%= @place.name %></h1>
+        <p><%= @place.description %></p>
+
+        <% if @reviews.blank? %>
+          <h3>No reviews yet. Add one!</h3>
+          <%= link_to "Write Review", new_place_review_path(@place), class: "btn btn-danger" %>
+        <% else %>
+          <%= @reviews.each do |review| %>
+            <div class="reviews">
+              <p><%= review.rating %></p>
+              <p><%= review.comment %></p>
+            </div>
+          <% end %>
+        <% end %>
+            
       </div>
     </div>
   </div>

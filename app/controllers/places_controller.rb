@@ -9,6 +9,7 @@ class PlacesController < ApplicationController
 
   # GET /places/1
   def show
+    @reviews = Review.where(place_id: @place.id).order("created_at DESC")
   end
 
   # GET /places/new
