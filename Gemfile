@@ -35,6 +35,9 @@ gem 'paperclip', '~> 4.3', '>= 4.3.6'
 # Bootstrap
 gem 'bootstrap-sass', '~> 3.3.6'
 
+# Search
+gem 'searchkick', '~> 1.3', '>= 1.3.1'
+
 # Use Unicorn as the app server
 # gem 'unicorn'
 
