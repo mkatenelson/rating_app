@@ -8,19 +8,15 @@
 
       </div>
       <div class="col-nd-7 col-md-offset-1">
-        <h1 class="review_title"><%= @place.name %></h1>
-        <p><%= @place.description %></p>
-        <%= link_to "Write a Review", new_place_review_path(@place) %>
+        <h1 class="review_title">My Reviews</h1>
 
         <% if @reviews.blank? %>
-          <h3>No reviews yet. Add one!</h3>
-          <%= link_to "Write Review", new_place_review_path(@place), class: "btn btn-danger" %>
+          <h3>No reviews yet. Visit a place to add one!</h3>
         <% else %>
           <%= @reviews.each do |review| %>
           <div class="reviews">
             <div class="star-rating" data-score= <%= review.rating %> ></div>
             <p><%= review.comment %></p>
-            <p>by: <%= review.user.email %></p>
           </div>
           <% end %>
         <% end %>
@@ -30,8 +26,7 @@
 </div>
 
 
-<%= link_to 'Edit Place', edit_place_path(@place) %> |
-<%= link_to 'Back to Places Index', places_path %>
+<%= link_to 'Edit Place', edit_place_path(@place) %>
 
 
 <script>

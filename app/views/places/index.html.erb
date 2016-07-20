@@ -7,6 +7,16 @@
 <% end %>
 
 <div class="row">
+  <div class="row">
+    <div class="col-sm-6 col-md-3">
+      <%= form_tag search_places_path, method: :get, class: "form", role: "search" do %>
+        <p>
+          <%= submit_tag "Search Your Places", name: nil, class: "btn btn-default" %>
+          <%= text_field_tag :search, params[:search], class: "form-control" %>
+        </p>
+      <% end %>
+    </div>
+  </div>
   <% @places.each do |place| %>
     <div class="col-sm-6 col-md-3">
       <div class="thumbnail">
