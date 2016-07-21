@@ -21,6 +21,7 @@
     <div class="col-sm-6 col-md-3">
       <div class="thumbnail">
         <%= link_to (image_tag place.image.url(:medium), class: 'image'), place %>
+        <h3><%= link_to place.name, place %></h3>
       </div>
     </div>
   <% end %>

@@ -1,20 +1,19 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="row">
-      <div class="col-md-4">
+      <div class="col-md-6">
         <%= image_tag @place.image.url(:medium) %>
-        <div class="star-rating" data-score= <%= @avg_review %> ></div>
-        <em><%= "#{@reviews.length} reviews" %></em>
+
 
       </div>
-      <div class="col-nd-7 col-md-offset-1">
+      <div class="col-nd-5 col-md-offset-1 place-show">
         <h1 class="review_title"><%= @place.name %></h1>
         <p><%= @place.description %></p>
-        <%= link_to "Write a Review", new_place_review_path(@place) %>
+        <%= link_to "Add a Comment", new_place_review_path(@place) %>
 
         <% if @reviews.blank? %>
-          <h3>No reviews yet. Add one!</h3>
-          <%= link_to "Write Review", new_place_review_path(@place), class: "btn btn-danger" %>
+          <h3>No comments yet. Add one!</h3>
+          <%= link_to "Add a Comment", new_place_review_path(@place), class: "btn btn-danger" %>
         <% else %>
           <%= @reviews.each do |review| %>
           <div class="reviews">
