@@ -1,12 +1,12 @@
 class ReviewsController < ApplicationController
   before_action :set_review, only: [:show, :edit, :update, :destroy]
   before_action :set_place
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:index, :show]
 
 
   # GET /reviews/new
   def new
-    @review = Review.new
+    @review = current_user.reviews.build
   end
 
   # GET /reviews/1/edit
@@ -15,7 +15,7 @@ class ReviewsController < ApplicationController
 
   # POST /reviews
   def create
-    @review = Review.new(review_params)
+    @review = current_user.reviews.build(review_params)
     @review.user_id = current_user.id
     @review.place_id = @place.id
 
