@@ -1,12 +1,11 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="row">
-      <div class="col-md-6">
         <%= image_tag @place.image.url(:medium) %>
 
 
       </div>
-      <div class="col-nd-5 col-md-offset-1 place-show">
+      <div class="row place-show">
         <h1 class="review_title"><%= @place.name %></h1>
         <p><%= @place.description %></p>
         <%= link_to "Add a Comment", new_place_review_path(@place) %>
