@@ -3,9 +3,12 @@
     <div class="row">
       <div class="col-md-4">
         <%= image_tag @place.image.url(:medium) %>
-
-
+        <h5>Priority Ranking:
+          <div class="star-rating" data-score= <%= @reviews.average(:rating).round(2) %> ></div>
+          <em><%= "#{@reviews.length} comments" %></em>
+        </h5>  
       </div>
+
       <div class="col-md-7 col-md-offset-1">
         <h1 class="review_name"><%= @place.name %></h1>
         <p><%= @place.description %></p>
