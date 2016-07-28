@@ -1,0 +1,13 @@
+<p>
+  <strong>Importance Rating:</strong>
+  <%= @review.rating %>
+</p>
+
+<p>
+  <strong>Comment:</strong>
+  <%= @review.comment %>
+</p>
+
+
+
+<%= link_to 'Edit', edit_review_path(@review) %>

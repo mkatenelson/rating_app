@@ -10,7 +10,7 @@ Rails.application.routes.draw do
     collection do
       get 'search'
     end
-    resources :reviews, except: [:show, :index]
+    resources :reviews, except: [:index]
   end
 
   root 'home#index'
