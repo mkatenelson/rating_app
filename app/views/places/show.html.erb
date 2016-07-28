@@ -1,24 +1,24 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <div class="row">
+      <div class="col-md-4">
         <%= image_tag @place.image.url(:medium) %>
 
 
       </div>
-      <div class="row place-show">
-        <h1 class="review_title"><%= @place.name %></h1>
+      <div class="col-md-7 col-md-offset-1">
+        <h1 class="review_name"><%= @place.name %></h1>
         <p><%= @place.description %></p>
-        <%= button_to "Add a Comment", new_place_review_path(@place), class: "btn" %>
-
+        <%= button_to "Write a Comment", new_place_review_path(@place), class: "btn btn-danger" %>
         <% if @reviews.blank? %>
-          <h3>No comments yet. Add one!</h3>
+          <h3>No reviews yet. Write one!</h3>
+
         <% else %>
-          <%= @reviews.each do |review| %>
-          <div class="reviews">
-            <div class="star-rating" data-score= <%= review.rating %> ></div>
-            <p><%= review.comment %></p>
-            <%= link_to 'Edit Comment', edit_review_path(@review) %>
-          </div>
+          <% @reviews.each do |review| %>
+            <div class="reviews">
+              <div class="star-rating" data-score= <%= review.rating %> ></div>
+              <p><%= review.comment %></p>
+            </div>
           <% end %>
         <% end %>
       </div>
@@ -26,17 +26,15 @@
   </div>
 </div>
 
-
-<%= link_to 'Edit Place', edit_place_path(@place) %> |
-<%= link_to 'Back to Places Index', places_path %>
-
+<%= link_to 'Edit', edit_place_path(@place) %> |
+<%= link_to 'Back', places_path %>
 
 <script>
-  $('.star-rating').raty({
-    path: '/assets/',
-    readOnly: true,
-    score: function() {
-      return $(this).attr('data-score');
+    $('.star-rating').raty({
+      path: '/assets/',
+      readOnly: true,
+      score: function() {
+            return $(this).attr('data-score');
     }
   });
 </script>

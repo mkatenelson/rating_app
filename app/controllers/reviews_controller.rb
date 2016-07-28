@@ -4,13 +4,15 @@ class ReviewsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
 
 
-  # GET /reviews/new
-  def new
-    @review = current_user.reviews.build
-  end
+  
 
   # GET /reviews/1/edit
   def edit
+  end
+
+  # GET /reviews/new
+  def new
+    @review = current_user.reviews.build
   end
 
   # POST /reviews
