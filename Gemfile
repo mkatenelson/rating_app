@@ -23,7 +23,7 @@ gem 'paperclip', '~> 4.3', '>= 4.3.6'
 gem 'bootstrap-sass', '~> 3.3.6'
 # Search
 gem 'searchkick', '~> 1.3', '>= 1.3.1'
-
+gem 'gmaps4rails'
 # Use Unicorn as the app server
 # gem 'unicorn'
 
